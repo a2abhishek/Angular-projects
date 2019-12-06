@@ -1,0 +1,76 @@
+<hr>
+<h1>Student Details</h1>
+<button (click)="showS==true?showS=false:showS=true" class="btn btn-primary">Show Student Details</button>
+
+<div *ngIf="showS">
+    <table border="1">
+            <tr *ngFor="let c of cityList">
+                <td><button (click)="S==true?S=false:S=true">{{c.city}}</button></td>
+                    <div *ngIf="S">
+                        <td>
+                            <ul *ngFor="let s of c.student">
+                                <li>Id: {{s.studentId}}</li>
+                                <li>Name: {{s.studentName}}</li>
+                            </ul>
+                        </td>
+                    </div>
+            </tr>
+    </table>
+</div>
+<br><hr>
+<label for="u">Enter a username:</label>
+<input type="text" [(ngModel)]="username" id="u">
+
+<p>yo! {{username}}. Awesome username by the way</p>
+
+<button [disabled]="valid()" (click)="username = ''" class="btn btn-secondary">Reset</button>
+<br><hr>
+
+<button (click) = "toggle(); displayClick();" class="btn btn-secondary" >{{buttonName}}</button>
+
+<div *ngIf="display">
+    <p>Chandan is a stupid boy!</p>
+    <div *ngFor="let c of count;index as i;" [ngStyle]="{'background-color':c>='5' ? 'blue' : 'white'}" 
+        [ngClass]="c>='5'?'displayDetail':'detail'" ><h3>{{c}}</h3></div>
+</div>
+
+<hr>
+
+<label for="filter" style="padding: 5px;">Select gender to filter: </label>
+<input type="radio" name="gender" id="filter" value="male" (click)="change('male')">male
+<input type="radio" name="gender" id="filter" value="female" (click)="change('female')">female
+<br>
+reverse String for radio button :{{gendervalue|reverse}}
+<table class="table table-hover table-striped table-success">
+    <tr>
+        <th>Index</th>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Salary</th>
+        <th>Date of Joining</th>
+    </tr>
+    <tr *ngFor="let e of employee|genderlist:gendervalue; index as i;">
+        
+            <td>{{i+1}}</td>
+            <td>{{e.name|gendercheck:e.gender}}</td>
+            <td>{{e.gender}}</td>
+            <td>{{e.salary}}</td>
+            <td>{{e.dateOfJoining}}</td>    
+
+    </tr>
+</table>
+<br>
+<h2>Power Boost Calculator</h2>
+<table>
+    <tr>
+        <td><label for="power">Normal Power: </label></td>
+        <td><input type="number" [(ngModel)]="power" id="power"></td>
+    </tr>
+    <tr>
+        <td><label for="factor">Boost Factor: </label></td>
+        <td><input type="number" [(ngModel)]="factor" id="factor"></td>
+    </tr>
+    <tr><td><label for="s">Super Hero Power: </label></td>
+        <td><h3>{{power|power:factor}}</h3></td>
+    </tr>
+</table>
